@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
@@ -118,12 +119,12 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>{
 		this.length = 0;
 	}
 
-	public Collection<T> getNodes() {
+	public ArrayList<T> getNodes() {
 		return inOrden(root);
 	}
 
-	private Collection<T> inOrden(BSTNode<T> currentNode) {
-		Collection<T> list = new Stack<T>();
+	private ArrayList<T> inOrden(BSTNode<T> currentNode) {
+		ArrayList<T> list = new ArrayList<T>();
 		if (currentNode != null) {
 			if (currentNode.left != null)
 				list.addAll(inOrden(currentNode.left));
