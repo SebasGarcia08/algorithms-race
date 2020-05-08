@@ -10,7 +10,6 @@ public class DoublyLinkedList<T> implements Iterable<Node<T>> {
 	protected static class Node<T> {
 		private T data;
 		private Node<T> next;
-		@SuppressWarnings("unused")
 		private Node<T> prev;
 
 		public Node(T data) {
