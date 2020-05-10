@@ -16,11 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane styleClass="configurationScene" stylesheets="@../../resources/configurationSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="parentContainer" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.ConfigurationSceneController">
    <children>
-      <AnchorPane fx:id="configurationAnchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="configurationScene">
+      <AnchorPane fx:id="configurationAnchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css">
          <children>
-            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="522.0" layoutY="194.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="138.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" text="GO!" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="522.0" layoutY="194.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#loadRaceScene" prefHeight="64.0" prefWidth="138.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" text="GO!" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="35.0" />
                </font>
@@ -31,7 +31,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="PLAY" size="30" text="" wrappingWidth="25.000006556510925" />
                </graphic>
             </JFXButton>
-            <HBox layoutX="224.0" layoutY="212.0" prefHeight="44.0" prefWidth="262.0">
+            <HBox layoutX="212.0" layoutY="214.0" prefHeight="44.0" prefWidth="262.0">
                <children>
                   <Label prefHeight="43.0" prefWidth="44.0" text="N:" textFill="WHITE">
                      <font>

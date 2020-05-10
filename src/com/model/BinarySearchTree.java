@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
 
-public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>{
+public class BinarySearchTree<T extends Comparable<T>> extends CompetitiveAlgorithm<T> implements Iterable<T>{
 	/**
 	 * The wild-card Node<T extends Comparable<? super T>> 
 	 *  allows T to be a type that is a sub-type of some type that implements Comparable 
@@ -243,8 +243,8 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>{
 			; // Nothing if found some duplicate node
 		}
 	}
-
-	public BSTNode<T> searchIteratively(T data) {
+	
+	public BSTNode<T> searchNodeIteratively(T data) {
 		BSTNode<T> nodeFound = root;
 		boolean found = false;
 		if (root != null) {
@@ -259,12 +259,19 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>{
 		}
 		return nodeFound;
 	}
+	
+	@Override
+	public T searchIteratively(T data) {
+		return searchNodeIteratively(data).data;
+	}
 
-	public BSTNode<T> searchRecursively(T data) {
+	public T searchRecursively(T data) {
 		if (root == null)
 			return null;
-		else
-			return searchRecursively(root, data);
+		else {
+			BSTNode<T> nodeFound = searchRecursively(root, data);
+			return (nodeFound == null) ? null: nodeFound.data;
+		}
 	}
 
 	private BSTNode<T> searchRecursively(BSTNode<T> current, T data) {
@@ -354,7 +361,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>{
 				else
 					root.data = root.left.getMaximumNode().delete().data;
 			} else {
-				BSTNode<T> nodeFound = searchIteratively(data);
+				BSTNode<T> nodeFound = searchNodeIteratively(data);
 				if (nodeFound != null)
 					nodeFound.delete();
 			}

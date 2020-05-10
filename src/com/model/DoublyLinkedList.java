@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import com.model.DoublyLinkedList.Node;
 
-public class DoublyLinkedList<T> implements Iterable<Node<T>> {
+public class DoublyLinkedList<T> extends CompetitiveAlgorithm<T> implements Iterable<Node<T>> {
 
 	protected static class Node<T> {
 		private T data;
@@ -122,7 +122,8 @@ public class DoublyLinkedList<T> implements Iterable<Node<T>> {
 				deleteRecursively(currentNode.next, data);			
 		}
 	}
-
+	
+	@Override
 	public T searchIteratively(T data) {
 		for (Node<T> currentNode : this)
 			if (currentNode.data.equals(data))
