@@ -17,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -43,9 +42,6 @@ public class ConfigurationSceneController {
 
     @FXML
     private ToggleGroup toggleGroupMode;
-
-    @FXML
-    private Pane paneUpperBar;
 
     @FXML
     private ToggleGroup toggleGroupAlgorithm;
@@ -78,9 +74,6 @@ public class ConfigurationSceneController {
     	System.exit(0);
     }
     
-    public void initialize() {    
-    	
-    }
-    
-    
+	public void initialize() {    
+    }   
 }

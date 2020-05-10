@@ -37,10 +37,7 @@ public class RaceSceneController {
 
     @FXML
     private FontAwesomeIconView faFlagRight;
-    
-    @FXML
-    private Pane paneUpperBar;
-    
+        
     @FXML
     private JFXButton btnExit;
     
@@ -48,4 +45,8 @@ public class RaceSceneController {
     void exit(ActionEvent event) {
     	System.exit(0);
     }
+    
+    public void initialize() {    
+    	
+    }  
 }
