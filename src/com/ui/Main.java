@@ -2,23 +2,36 @@ package com.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class Main extends Application{
-
+public class Main extends Application {
+	
+	private static double xOffset = 0;
+	private static double yOffset = 0;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader fxmll = new FXMLLoader();
 		fxmll.setLocation(getClass().getResource("/resources/Main.fxml"));
-		
+
 		StackPane root = fxmll.load();
-		Scene scene = new Scene(root);
+				
+		root.setOnMousePressed((event) -> { // Ends events to make window draggable
+				xOffset = event.getSceneX();
+				yOffset = event.getSceneY();
+		});
+
+		root.setOnMouseDragged((event) -> {
+				primaryStage.setX(event.getScreenX() - xOffset);
+				primaryStage.setY(event.getScreenY() - yOffset);
+		}); // Ends events to make window draggable
 		
+		Scene scene = new Scene(root);
+
 		primaryStage.setResizable(false);
 		primaryStage.centerOnScreen();
 		
@@ -27,8 +40,8 @@ public class Main extends Application{
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
-	}	
+	}
 }

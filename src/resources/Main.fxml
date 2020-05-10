@@ -87,18 +87,6 @@
                   </HBox>
                </children>
             </VBox>
-            <Pane fx:id="paneUpperBar" layoutY="-2.0" prefHeight="29.0" prefWidth="684.0">
-               <children>
-                  <JFXButton layoutX="654.0" layoutY="3.0" prefHeight="29.0" prefWidth="25.0">
-                     <font>
-                        <Font name="Franklin Gothic Medium" size="1.0" />
-                     </font>
-                     <graphic>
-                        <FontAwesomeIconView fill="#dad0f2" glyphName="TIMES" size="20" />
-                     </graphic>
-                  </JFXButton>
-               </children>
-            </Pane>
             <VBox alignment="CENTER" layoutX="39.0" layoutY="65.0" prefHeight="202.0" prefWidth="131.0">
                <children>
                   <Label text="ALGORITHM" textFill="WHITE">
@@ -138,6 +126,18 @@
                   </HBox>
                </children>
             </VBox>
+            <Pane fx:id="paneUpperBar" prefHeight="29.0" prefWidth="684.0">
+               <children>
+                  <JFXButton fx:id="btnExit" layoutX="654.0" layoutY="3.0" onAction="#exit" prefHeight="29.0" prefWidth="25.0">
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="1.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="#dad0f2" glyphName="TIMES" size="20" />
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
    </children>

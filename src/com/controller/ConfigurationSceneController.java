@@ -49,17 +49,19 @@ public class ConfigurationSceneController {
 
     @FXML
     private ToggleGroup toggleGroupAlgorithm;
-
+    
+    @FXML
+    private JFXButton btnExit;
+    
     @FXML
     private void loadRaceScene(ActionEvent event) throws IOException {
 		FXMLLoader fxmll = new FXMLLoader();
 		fxmll.setLocation(getClass().getResource("/resources/Race.fxml"));
-
         Parent root = fxmll.load();
         Scene scene = btnRun.getScene();
         
         root.translateXProperty().set(scene.getHeight());
-       
+        
         parentContainer.getChildren().add(root);
 
         Timeline timeline = new Timeline();
@@ -70,9 +72,15 @@ public class ConfigurationSceneController {
             parentContainer.getChildren().remove(configurationAnchor);
         });
         timeline.play();
-    }    
+    }   
+    
+    public void exit(ActionEvent e) {
+    	System.exit(0);
+    }
     
     public void initialize() {    
     	
     }
+    
+    
 }
