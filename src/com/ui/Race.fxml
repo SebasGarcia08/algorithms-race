@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="raceAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="raceScene" stylesheets="@../../resources/raceSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="BASELINE_CENTER" layoutX="144.0" layoutY="24.0" prefHeight="44.0" prefWidth="417.0">
+         <children>
+            <FontAwesomeIconView fx:id="faFlagLeft" fill="WHITE" glyphName="FLAG_CHECKERED" rotate="190.0" size="35" text="" wrappingWidth="32.640703201293945">
+               <rotationAxis>
+                  <Point3D x="0.2" y="1.0" />
+               </rotationAxis>
+            </FontAwesomeIconView>
+            <Label prefHeight="44.0" prefWidth="339.0" text=" ALGORITHMS RACE" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="38.0" />
+               </font>
+            </Label>
+            <FontAwesomeIconView fx:id="faFlagRight" fill="WHITE" glyphName="FLAG_CHECKERED" size="35" wrappingWidth="37.99998617172241" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
