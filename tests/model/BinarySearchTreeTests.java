@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import com.model.BinarySearchTree;
+
 /**
  * @author Sebastián García Acosta
  *

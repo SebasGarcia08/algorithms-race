@@ -14,11 +14,9 @@
  * 
  * File created: 21/05/2013 at 21:17:23 by antonio
  */
-package ui;
+package com.ui;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -29,14 +27,13 @@ import javafx.util.Duration;
  *
  */
 public class ChronometerComponent extends HBox {
-
 	private Label labelMillis;
 	private Label labelSeconds;
 	private Label labelMinutes;		
-	private long timeCounter;
-	private Timeline timeline;
 	private Label semicolon1;
 	private Label semicolon2;
+	private Timeline timeline;
+	private long timeCounter;
 
 	/**
 	 * Chronometer with time 0
@@ -57,13 +54,14 @@ public class ChronometerComponent extends HBox {
 		labelMillis = new Label();
 		labelSeconds = new Label();
 		labelMinutes = new Label();
+		
 		updateLabels(timeCounter);
 		getChildren().addAll(labelMinutes, semicolon1, labelSeconds, semicolon2, labelMillis);		
-		timeline = new Timeline(new KeyFrame(Duration.millis(1), new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
+		
+		timeline = new Timeline(new KeyFrame(Duration.millis(1), (event) -> {
 				updateLabels(timeCounter++);				
-			}}));
+			}));
+		
 		timeline.setCycleCount(Timeline.INDEFINITE);
 	}
 	
@@ -145,5 +143,4 @@ public class ChronometerComponent extends HBox {
 		semicolon1.setStyle(style);
 		semicolon2.setStyle(style);
 	}
-
 }

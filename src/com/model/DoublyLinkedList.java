@@ -1,9 +1,9 @@
-package model;
+package com.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import model.DoublyLinkedList.Node;
+import com.model.DoublyLinkedList.Node;
 
 public class DoublyLinkedList<T> implements Iterable<Node<T>> {
 

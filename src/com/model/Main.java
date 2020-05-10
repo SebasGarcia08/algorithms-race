@@ -1,4 +1,4 @@
-package model;
+package com.model;
 
 public class Main {
 	public static void main(String[] args) {
@@ -8,6 +8,6 @@ public class Main {
 			ll.addIteratively(data);
 		ll.deleteRecursively(50);
 		for(Integer node : ll)
-			System.out.println(node);	
+			System.out.println(node);
 	}
 }

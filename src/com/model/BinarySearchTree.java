@@ -1,4 +1,4 @@
-package model;
+package com.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -361,26 +361,13 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>{
 		}
 		numberOfElements--;
 	}
-	
-//	public void deleteRecursively(T data) {
-//		if (root != null) {
-//			if (data.compareTo(root.data) == 0) {
-//				if (root.isLeafNode())
-//					root = null;
-//				else if (root.hasOnlyOneChild())
-//					root = (root.hasOnlyLeftChild()) ? root.left : root.right;
-//				else
-//					root.data = root.left.getMaximumNode().delete().data;
-//			} else {
-//				BSTNode<T> nodeFound = searchRecursively(data);
-//				if (nodeFound != null)
-//					nodeFound.delete();
-//			}
-//		}
-//	}
 
 	public T getRootData() {
 		return this.root.data;
+	}
+	
+	public int NumberOfElements() {
+		return numberOfElements;
 	}
 	
 	public ArrayList<T> getNodes(){

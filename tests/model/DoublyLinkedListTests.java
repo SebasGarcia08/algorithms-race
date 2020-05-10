@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import com.model.DoublyLinkedList;
+
 public class DoublyLinkedListTests {
 
 	private DoublyLinkedList<Integer> dll;
