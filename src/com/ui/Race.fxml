@@ -11,38 +11,38 @@
 
 <AnchorPane fx:id="raceAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="raceScene" stylesheets="@../../resources/raceSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="BOTTOM_CENTER" layoutX="163.0" layoutY="17.0" mouseTransparent="true" prefHeight="76.0" prefWidth="386.0" AnchorPane.bottomAnchor="179.0" AnchorPane.leftAnchor="163.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="17.0">
+      <HBox alignment="BOTTOM_CENTER" layoutX="152.0" layoutY="34.0" mouseTransparent="true" prefHeight="76.0" prefWidth="386.0" AnchorPane.bottomAnchor="162.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="34.0">
          <children>
             <FontAwesomeIconView fx:id="faFlagLeft" fill="WHITE" glyphName="FLAG_CHECKERED" rotate="190.0" size="60" text="" wrappingWidth="32.640703201293945">
                <rotationAxis>
                   <Point3D x="0.2" y="1.0" />
                </rotationAxis>
             </FontAwesomeIconView>
-            <Pane fx:id="chronometerPane" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="259.0">
+            <Pane fx:id="chronometerPane" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="344.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="4.0" prefHeight="69.0" prefWidth="252.0">
+                  <HBox alignment="CENTER" layoutX="21.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="69.0" prefWidth="290.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="89.0" prefWidth="70.0" text="00" textFill="WHITE">
+                        <Label fx:id="labelMinutes" alignment="CENTER" prefHeight="69.0" prefWidth="69.0" text="00" textFill="WHITE">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="50.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                        <Label fx:id="semicolon1" alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="30.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="89.0" prefWidth="70.0" text="00" textFill="WHITE">
+                        <Label fx:id="labelSeconds" alignment="CENTER" prefHeight="69.0" prefWidth="91.0" text="00" textFill="WHITE">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="50.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                        <Label fx:id="semicolon2" alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="30.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="94.0" prefWidth="70.0" text="00" textFill="WHITE">
+                        <Label fx:id="labelMillis" alignment="CENTER" prefHeight="69.0" prefWidth="99.0" text="00" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="50.0" />
                            </font>
@@ -66,5 +66,10 @@
             </JFXButton>
          </children>
       </Pane>
+      <Label layoutX="274.0" layoutY="17.0" text="ALGORITHMS RACE" textFill="WHITE">
+         <font>
+            <Font name="Franklin Gothic Medium" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
