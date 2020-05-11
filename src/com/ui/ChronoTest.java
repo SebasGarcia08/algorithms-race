@@ -43,7 +43,7 @@ public class ChronoTest extends Application {
 		HBox hbox = new HBox(5);
 		hbox.setAlignment(Pos.CENTER);
 		hbox.getChildren().addAll(labelMinutes, semicolon1, labelSeconds, semicolon2, labelMillis);
-
+		
 		timeline = new Timeline(new KeyFrame(Duration.millis(1), (event) -> {
 			updateLabels(timeCounter++);
 		}));
@@ -52,7 +52,7 @@ public class ChronoTest extends Application {
 
 		chrono = new ChronometerComponent();
 		chrono.setChronoStyle(style);
-
+		
 		Button start = new Button("Start");
 		start.setOnAction((event) -> {
 			timeline.playFromStart();
@@ -69,7 +69,7 @@ public class ChronoTest extends Application {
 		vbox.setOnKeyPressed((event) -> {
 			timeline.stop();
 		});
-
+		
 		vbox.getChildren().addAll(start, stop, chrono);
 		Scene scene = new Scene(vbox, 300, 300);
 		stage.setScene(scene);

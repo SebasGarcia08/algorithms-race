@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Stack;
 
-public class BinarySearchTree<T extends Comparable<T>> extends CompetitiveAlgorithm<T> implements Iterable<T>{
+public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, CompetitiveDataStructure<T> {
 	/**
 	 * The wild-card Node<T extends Comparable<? super T>> 
 	 *  allows T to be a type that is a sub-type of some type that implements Comparable 
@@ -384,11 +384,16 @@ public class BinarySearchTree<T extends Comparable<T>> extends CompetitiveAlgori
 		return nodes;
 	}
 	
+	public void reset() {
+		this.root = null;
+	}
+	
 	@Override
 	public Iterator<T> iterator(){
 		return new InorderIterator();
 	}
-	
+
+	/* Iterator */
 	private class InorderIterator implements Iterator<T> {
 		/** The nodes that are still to be visited. */
 		private Stack<BSTNode<T>> stack;

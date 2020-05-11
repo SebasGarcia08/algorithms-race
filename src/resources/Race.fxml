@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -73,7 +74,7 @@
             <FontAwesomeIconView fill="#dad0f2" glyphName="TIMES" size="20" />
          </graphic>
       </JFXButton>
-      <HBox alignment="CENTER" depthTest="DISABLE" layoutX="58.0" layoutY="130.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="120.0" prefWidth="432.0">
+      <HBox alignment="CENTER" depthTest="DISABLE" layoutX="58.0" layoutY="136.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="120.0" prefWidth="439.0">
          <children>
             <GridPane prefHeight="102.0" prefWidth="429.0">
               <columnConstraints>
@@ -92,7 +93,7 @@
                         <JFXProgressBar prefHeight="20.0" prefWidth="500.0" progress="0.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="32.0" prefWidth="224.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
                         <JFXProgressBar prefHeight="20.0" prefWidth="500.0" progress="0.0" />
                      </children>
@@ -107,6 +108,12 @@
                         <Circle fill="#1f93ff00" layoutX="40.0" layoutY="10.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
                         <Circle fill="#1f93ff00" layoutX="14.0" layoutY="27.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
                         <Circle fill="#1f93ff00" layoutX="65.0" layoutY="27.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                        <Line endX="15.0" endY="10.0" fill="WHITE" layoutX="40.0" layoutY="10.0" startX="9.0" startY="6.0" stroke="WHITE" strokeWidth="4.0" />
+                        <Line endX="19.0" endY="8.0" fill="WHITE" layoutX="10.0" layoutY="11.0" rotate="180.0" startX="8.0" startY="2.0" stroke="WHITE" strokeWidth="4.0">
+                           <rotationAxis>
+                              <Point3D y="1.0" />
+                           </rotationAxis>
+                        </Line>
                      </children>
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -114,6 +121,8 @@
                         <Circle fill="#1f93ff00" layoutX="14.0" layoutY="20.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
                         <Circle fill="#1f93ff00" layoutX="65.0" layoutY="20.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
                         <Circle fill="#1f93ff00" layoutX="40.0" layoutY="20.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                        <Line endX="6.0" layoutX="24.0" layoutY="20.0" startX="1.5" stroke="WHITE" strokeWidth="4.0" />
+                        <Line endX="22.0" endY="-9.0" layoutX="34.0" layoutY="30.0" startX="16.0" startY="-10.0" stroke="WHITE" strokeWidth="4.0" />
                      </children>
                   </Pane>
                   <Pane GridPane.rowIndex="2">

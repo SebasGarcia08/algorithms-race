@@ -1,7 +1,6 @@
 package com.model;
 
-public abstract class CompetitiveAlgorithm<T> {
-	
+public interface CompetitiveDataStructure <T> {
 //	Add algorithms
 	abstract void addIteratively(T data);
 	abstract void addRecursively(T data);
@@ -13,4 +12,7 @@ public abstract class CompetitiveAlgorithm<T> {
 //	Search algorithms
 	abstract T searchIteratively(T data);
 	abstract T searchRecursively(T data);
+	
+//	For clean the dataStructure
+	abstract void reset();
 }

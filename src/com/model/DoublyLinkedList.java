@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import com.model.DoublyLinkedList.Node;
 
-public class DoublyLinkedList<T> extends CompetitiveAlgorithm<T> implements Iterable<Node<T>> {
+public class DoublyLinkedList<T> implements Iterable<Node<T>>, CompetitiveDataStructure<T> {
 
 	protected static class Node<T> {
 		private T data;
@@ -62,13 +62,14 @@ public class DoublyLinkedList<T> extends CompetitiveAlgorithm<T> implements Iter
 	}
 
 	private Node<T> first;
-	private int size;
+	private int numberOfElements;
 
 	public DoublyLinkedList() {
 		this.first = null;
-		this.size = 0;
+		this.numberOfElements = 0;
 	}
 
+	@Override
 	public void addIteratively(T data) {
 		Node<T> newNode = new Node<T>(data);
 		if (first == null) {
@@ -80,16 +81,17 @@ public class DoublyLinkedList<T> extends CompetitiveAlgorithm<T> implements Iter
 			newNode.prev = lastNode;
 			lastNode.next = newNode;
 		}
-		size++;
+		numberOfElements++;
 	}
 
+	@Override
 	public void addRecursively(T data) {
 		Node<T> newNode = new Node<T>(data);
 		if (first == null)
 			first = newNode;
 		else
 			addRecursively(first, newNode);
-		size++;
+		numberOfElements++;
 	}
 
 	private void addRecursively(Node<T> currentNode, Node<T> newNode) {
@@ -101,17 +103,19 @@ public class DoublyLinkedList<T> extends CompetitiveAlgorithm<T> implements Iter
 		}
 	}
 
+	@Override
 	public void deleteIteratively(T data) {
 		for (Node<T> currentNode : this)
 			if (currentNode.data.equals(data))
 				currentNode.prev.next = currentNode.next;
-		size--;
+		numberOfElements--;
 	}
-
+	
+	@Override
 	public void deleteRecursively(T data) {
 		if (first != null)
 			deleteRecursively(first, data);
-		size--;
+		numberOfElements--;
 	}
 
 	private void deleteRecursively(Node<T> currentNode, T data) {
@@ -131,6 +135,7 @@ public class DoublyLinkedList<T> extends CompetitiveAlgorithm<T> implements Iter
 		return null;
 	}
 
+	@Override
 	public T searchRecursively(T data) {
 		T dataFound = null;
 		if (first != null)
@@ -166,6 +171,11 @@ public class DoublyLinkedList<T> extends CompetitiveAlgorithm<T> implements Iter
 			data.add(node.data);
 		return data;
  	}
+	
+	@Override
+	public void reset() {
+		this.first = null;
+	}
 
 	@Override
 	public Iterator<Node<T>> iterator() {
