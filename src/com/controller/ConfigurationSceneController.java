@@ -59,7 +59,7 @@ public class ConfigurationSceneController {
         root.translateXProperty().set(scene.getHeight());
         
         parentContainer.getChildren().add(root);
-
+        
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.seconds(0.1), kv);
