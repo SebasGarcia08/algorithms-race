@@ -34,10 +34,10 @@ public class MyArrayList<T> extends ArrayList<T> implements CompetitiveDataStruc
 	@Override
 	public T searchIteratively(T data) {
 		int idx = indexOf(data);
-		if(idx != -1)
-			return get(idx);
-		else
+		if(idx == -1)
 			return null;
+		else
+			return get(idx);
 	}
 	
 	@Override
