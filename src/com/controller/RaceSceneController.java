@@ -28,20 +28,17 @@ public class RaceSceneController implements Initializable {
 	@FXML
 	private Pane chronometerPane;
 
-	@FXML
-	private Label labelMinutes;
+    @FXML
+    private Label labelHours;
 
-	@FXML
-	private Label semicolon1;
+    @FXML
+    private Label labelMinutes;
 
-	@FXML
-	private Label labelSeconds;
+    @FXML
+    private Label labelSeconds;
 
-	@FXML
-	private Label semicolon2;
-
-	@FXML
-	private Label labelMillis;
+    @FXML
+    private Label labelMillis;
 
 	@FXML
 	private FontAwesomeIconView faFlagRight;
@@ -49,7 +46,7 @@ public class RaceSceneController implements Initializable {
 	@FXML
 	private JFXButton btnExit;
 
-	private int timeCounter = 0;
+	private long timeCounter = 0;
 
 	private Timeline chronometerTimeLine;
 	
@@ -76,14 +73,17 @@ public class RaceSceneController implements Initializable {
 	public void updateLabels(long timeCounter) {
 		long milliseconds = timeCounter % 1000;
 		long seconds = (timeCounter / 1000) % 60;
-		long minutes = (timeCounter / 60000) % 60;
+		long minutes = (timeCounter / (1000 * 60)) % 60;
+		long hours = (timeCounter / (1000 * 60 * 60)) % 60; 
 		String sMil = milliseconds < 10 ? ("00" + milliseconds)
 				: milliseconds < 100 ? ("0" + milliseconds) : ("" + milliseconds);
 		String sSec = seconds < 10 ? ("0" + seconds) : ("" + seconds);
 		String sMin = minutes < 10 ? ("0" + minutes) : ("" + minutes);
+		String sHours = hours < 10 ? ("0" + hours) : ("" + hours);
 		labelMillis.setText(sMil);
 		labelSeconds.setText(sSec);
 		labelMinutes.setText(sMin);
+		labelHours.setText(sHours);
 	}
 	
 }

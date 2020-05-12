@@ -18,23 +18,33 @@
 
 <AnchorPane fx:id="raceAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="raceScene" stylesheets="@raceSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.RaceSceneController">
    <children>
-      <HBox alignment="BOTTOM_CENTER" layoutX="152.0" layoutY="34.0" mouseTransparent="true" prefHeight="76.0" prefWidth="386.0" AnchorPane.bottomAnchor="162.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="34.0">
+      <HBox alignment="BOTTOM_CENTER" layoutX="75.0" layoutY="37.0" mouseTransparent="true" prefHeight="76.0" prefWidth="541.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="37.0">
          <children>
             <FontAwesomeIconView fx:id="faFlagLeft" fill="WHITE" glyphName="FLAG_CHECKERED" rotate="190.0" size="60" text="" wrappingWidth="32.640703201293945">
                <rotationAxis>
                   <Point3D x="0.2" y="1.0" />
                </rotationAxis>
             </FontAwesomeIconView>
-            <Pane fx:id="chronometerPane" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="344.0">
+            <Pane fx:id="chronometerPane" maxHeight="-Infinity" minHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="70.0" prefWidth="421.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="21.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="69.0" prefWidth="290.0">
+                  <HBox alignment="CENTER" layoutX="4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="69.0" prefWidth="415.0">
                      <children>
+                        <Label fx:id="labelHours" alignment="CENTER" prefHeight="69.0" prefWidth="69.0" text="00" textFill="WHITE">
+                           <font>
+                              <Font name="DejaVu Sans Condensed Bold" size="50.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                           <font>
+                              <Font name="DejaVu Sans Condensed Bold" size="30.0" />
+                           </font>
+                        </Label>
                         <Label fx:id="labelMinutes" alignment="CENTER" prefHeight="69.0" prefWidth="69.0" text="00" textFill="WHITE">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="50.0" />
                            </font>
                         </Label>
-                        <Label fx:id="semicolon1" alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="30.0" />
                            </font>
@@ -44,7 +54,7 @@
                               <Font name="DejaVu Sans Condensed Bold" size="50.0" />
                            </font>
                         </Label>
-                        <Label fx:id="semicolon2" alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
                            <font>
                               <Font name="DejaVu Sans Condensed Bold" size="30.0" />
                            </font>

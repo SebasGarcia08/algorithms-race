@@ -36,6 +36,7 @@ public class Main extends Application {
 		primaryStage.centerOnScreen();
 		
 		scene.setFill(Color.TRANSPARENT);
+		primaryStage.setTitle("Algorithms race");
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.show();
