@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.ConfigurationSceneController">
+<StackPane fx:id="parentContainer" prefWidth="684.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.GUIController">
    <children>
       <AnchorPane fx:id="configurationAnchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css">
          <children>
@@ -86,7 +86,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="39.0" layoutY="65.0" prefHeight="202.0" prefWidth="131.0">
+            <VBox alignment="CENTER" layoutX="39.0" layoutY="65.0" prefHeight="202.0" prefWidth="131.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="514.0" AnchorPane.topAnchor="65.0">
                <children>
                   <Label text="ALGORITHM" textFill="WHITE">
                      <font>

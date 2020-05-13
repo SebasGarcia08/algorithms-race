@@ -1,34 +1,36 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>algorithms-race</groupId>
-  <artifactId>algorithms-race</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Algorithms Race</name>
-  <description>GUI application that allows the experimentation of time complexity testing of three Data Structures (Binary Search Tree, Doubly Linked List and ArrayList) on three basic operations: Search, Add and Delete</description>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <testSourceDirectory>tests</testSourceDirectory>
-    <resources>
-      <resource>
-        <directory>src</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-  
-  	<dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>algorithms-race</groupId>
+	<artifactId>algorithms-race</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Algorithms Race</name>
+	<description>GUI application that allows the experimentation of time complexity testing of three Data Structures (Binary Search Tree, Doubly Linked List and ArrayList) on three basic operations: Search, Add and Delete</description>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>tests</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -57,5 +59,13 @@
 			<artifactId>bootstrapfx-core</artifactId>
 			<version>0.2.1</version>
 		</dependency>
- 	</dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
+		<dependency>
+			<groupId>org.controlsfx</groupId>
+			<artifactId>controlsfx</artifactId>
+			<version>8.40.14</version>
+		</dependency>
+
+	</dependencies>
 </project>

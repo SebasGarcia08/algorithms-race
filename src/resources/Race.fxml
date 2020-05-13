@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="raceAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="raceScene" stylesheets="@raceSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.RaceSceneController">
+<AnchorPane fx:id="raceAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="raceScene" stylesheets="@raceSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="BOTTOM_CENTER" layoutX="75.0" layoutY="37.0" mouseTransparent="true" prefHeight="76.0" prefWidth="541.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="37.0">
          <children>
@@ -76,7 +76,7 @@
             <Font name="Franklin Gothic Medium" size="17.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnExit" layoutX="659.0" onAction="#exit" prefHeight="29.0" prefWidth="25.0" ripplerFill="RED">
+      <JFXButton fx:id="btnExit1" layoutX="659.0" onAction="#exit" prefHeight="29.0" prefWidth="25.0" ripplerFill="RED">
          <font>
             <Font name="Franklin Gothic Medium" size="1.0" />
          </font>
@@ -100,17 +100,17 @@
                <children>
                   <HBox alignment="CENTER" GridPane.columnIndex="2">
                      <children>
-                        <JFXProgressBar prefHeight="20.0" prefWidth="500.0" progress="0.0" />
+                        <JFXProgressBar fx:id="BSTProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="38.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <JFXProgressBar prefHeight="20.0" prefWidth="500.0" progress="0.0" />
+                        <JFXProgressBar fx:id="DLLProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <JFXProgressBar prefHeight="20.0" prefWidth="500.0" progress="0.0" />
+                        <JFXProgressBar fx:id="ALProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" />
                      </children>
                   </HBox>
                   <Pane>
