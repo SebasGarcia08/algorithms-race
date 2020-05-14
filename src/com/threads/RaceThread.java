@@ -46,7 +46,7 @@ public class RaceThread extends Service<Void> {
 		// if succeeded
 		setOnSucceeded(s -> {
 			controller.numOfThreadsFinished++;
-			controller.stopChronometer();
+			controller.resetControlsOnFinished();
 			dataStructure.reset();
 			if (controller.numOfThreadsFinished == 1) {
 				String title = "We have a winner!";
@@ -59,8 +59,8 @@ public class RaceThread extends Service<Void> {
 		setOnFailed(fail -> {
 			controller.numOfThreadsFinished++;
 			dataStructure.reset();
-			controller.stopChronometer();
-			controller.notificate("Something wron!", "An error occured", FontAwesomeIcon.WARNING);
+			controller.resetControlsOnFinished();
+			controller.notificate("Error!", "Something wrong happened :c", FontAwesomeIcon.WARNING);
 		});
 
 		// if cancelled
@@ -139,6 +139,8 @@ public class RaceThread extends Service<Void> {
 						this.updateMessage("Adding elements...");
 						Random localRandom = new Random();
 						for (long i = 0; i <= numOfOperationsPending; i++) {
+							if(isCancelled())
+								break;
 							dataStructure.addIteratively(localRandom.nextLong());
 						}
 					} if (isCancelled()) {

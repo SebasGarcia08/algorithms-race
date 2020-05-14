@@ -16,7 +16,6 @@ import com.model.BinarySearchTree;
 import com.model.DoublyLinkedList;
 import com.model.Mode;
 import com.model.MyArrayList;
-import com.sun.javafx.scene.control.skin.ProgressIndicatorSkin;
 import com.threads.RaceThread;
 import com.ui.Ball;
 
@@ -25,13 +24,13 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -160,7 +159,12 @@ public class GUIController {
 
 	@FXML
 	private void go(ActionEvent event) throws IOException, InterruptedException {
-		prepareComponentsForRunning();
+		try {
+			prepareComponentsForRunning();			
+		} catch (Exception e) {
+			showDialog("Forgot to fill inputs!", "Please complete all fields before run algorithms", "Okay!");
+			resetComponents();
+		}
 		String StringN = textFieldCollectionSize.getText();
 		try {
 			Algorithm algorithm = getAlgorithm();
@@ -207,6 +211,14 @@ public class GUIController {
 		this.expandingBall = true;
 		btnRun.setDisable(true);
 		btnStop.setDisable(false);
+		textFieldCollectionSize.setEditable(false);
+		
+		for(Toggle t : toggleGroupAlgorithm.getToggles())
+			((JFXToggleButton) t).setDisable(true);
+		
+		for(Toggle t : toggleGroupMode.getToggles())
+			((JFXToggleButton) t).setDisable(true);
+
 	}
 
 	public void resetComponents() {
@@ -216,6 +228,13 @@ public class GUIController {
 		innerCircle.setRadius(15);
 		btnRun.setDisable(false);
 		btnStop.setDisable(true);
+		textFieldCollectionSize.setEditable(true);
+		
+		for(Toggle t : toggleGroupAlgorithm.getToggles())
+			((JFXToggleButton) t).setDisable(false);
+		
+		for(Toggle t : toggleGroupMode.getToggles())
+			((JFXToggleButton) t).setDisable(false);
 	}
 
 	public void updateCircles() {
@@ -254,14 +273,9 @@ public class GUIController {
 		notificationBuilder.show();
 	}
 
-	public void stopChronometer() {
+	public void resetControlsOnFinished() {
 		if (numOfThreadsFinished == 3) {
-			chronometerTimeLine.stop();
-			expandingBall = false;
-			outerCircle.setRadius(31);
-			innerCircle.setRadius(15);
-			btnRun.setDisable(false);
-			btnStop.setDisable(true);
+			resetComponents();
 		}
 	}
 

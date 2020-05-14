@@ -332,7 +332,7 @@
                         </GridPane>
                      </children>
                   </HBox>
-                  <Circle fx:id="outerCircle" fill="#0b486b" layoutX="451.0" layoutY="60.0" radius="31.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Circle fx:id="outerCircle" fill="#1fb829" layoutX="451.0" layoutY="60.0" radius="31.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                   <Circle fx:id="innerCircle" fill="#eee8e8" layoutX="451.0" layoutY="60.0" radius="15.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                </children>
             </Pane>
