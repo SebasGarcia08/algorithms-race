@@ -1,4 +1,5 @@
 package com.model;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -6,9 +7,10 @@ import java.util.Stack;
 
 public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, CompetitiveDataStructure<T> {
 	/**
-	 * The wild-card Node<T extends Comparable<? super T>> 
-	 *  allows T to be a type that is a sub-type of some type that implements Comparable 
-	 * @param <T> 
+	 * The wild-card Node<T extends Comparable<? super T>> allows T to be a type
+	 * that is a sub-type of some type that implements Comparable
+	 * 
+	 * @param <T>
 	 */
 	@SuppressWarnings("hiding")
 	protected class BSTNode<T extends Comparable<? super T>> {
@@ -87,8 +89,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 					this.parent.right = child;
 				child.parent = this.parent;
 			} else {
-				BSTNode<T> inOrderSuccesor = this.left.getMaximumNode().delete();
-				this.data = inOrderSuccesor.data;
+				this.data = this.left.getMaximumNode().delete().data;
 			}
 			return this;
 		}
@@ -118,42 +119,41 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 		this.root = null;
 		this.numberOfElements = 0;
 	}
-	
+
 	/**
 	 * Delete an element from this tree.
 	 * 
-	 * @param target
-	 *            The object to be deleted
+	 * @param target The object to be deleted
 	 */
 	public void deleteRecursively(T value) {
 		deleteRecursively(root, value);
 		numberOfElements--;
 	}
-	
+
 	private BSTNode<T> deleteRecursively(BSTNode<T> currentRoot, T value) {
-		if(currentRoot != null) {
-			if( value.compareTo(currentRoot.data) > 0) { // If value to delete is greater than current root 
+		if (currentRoot != null) {
+			if (value.compareTo(currentRoot.data) > 0) { // If value to delete is greater than current root
 				return deleteRecursively(currentRoot.right, value);
-			} else if ( value.compareTo(currentRoot.data) < 0){
+			} else if (value.compareTo(currentRoot.data) < 0) {
 				return deleteRecursively(currentRoot.left, value);
 			} else {
-				if(currentRoot.hasTwoChildren()) {
+				if (currentRoot.hasTwoChildren()) {
 					BSTNode<T> inOrderSuccesor = getMaximumRecursively(currentRoot.left);
 					currentRoot.data = deleteRecursively(currentRoot, inOrderSuccesor.data).data;
-				}else if(currentRoot.hasOnlyOneChild()) {
+				} else if (currentRoot.hasOnlyOneChild()) {
 					BSTNode<T> child = (currentRoot.hasOnlyLeftChild()) ? currentRoot.left : currentRoot.right;
-					if(currentRoot.isLeftNode()) 
-						currentRoot.parent.left = child; 
+					if (currentRoot.isLeftNode())
+						currentRoot.parent.left = child;
 					else
-						currentRoot.parent.right = child; 
+						currentRoot.parent.right = child;
 				} else {
-					if(currentRoot.isLeftNode())
+					if (currentRoot.isLeftNode())
 						currentRoot.parent.left = null;
 					else
 						currentRoot.parent.right = null;
 				}
 				return currentRoot;
-			}			
+			}
 		}
 		return currentRoot;
 	}
@@ -181,34 +181,34 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 		for (T element : c)
 			addRecursively(element);
 	}
-		
-	public void print2DUtil(BSTNode<T> root, int space)  {
+
+	public void print2DUtil(BSTNode<T> root, int space) {
 		int COUNT = 5;
-	    // Base case  
-	    if (root == null)  
-	        return;  
-	  
-	    // Increase distance between levels  
-	    space += COUNT;  
-	  
-	    // Process right child first  
-	    print2DUtil(root.right, space);  
-	  
-	    // Print current node after space  
-	    // count  
-	    for (int i = COUNT; i < space; i++)  
-	        System.out.print(" ");  
-	    System.out.print(root.data + "\n");  
-	  
-	    // Process left child  
-	    print2DUtil(root.left, space);  
-	}  
-	  
-	// Wrapper over print2DUtil()  
-	public void print2D()  {  
-	    // Pass initial space count as 0  
-	    print2DUtil(root, 0);  
-	}  
+		// Base case
+		if (root == null)
+			return;
+
+		// Increase distance between levels
+		space += COUNT;
+
+		// Process right child first
+		print2DUtil(root.right, space);
+
+		// Print current node after space
+		// count
+		for (int i = COUNT; i < space; i++)
+			System.out.print(" ");
+		System.out.print(root.data + "\n");
+
+		// Process left child
+		print2DUtil(root.left, space);
+	}
+
+	// Wrapper over print2DUtil()
+	public void print2D() {
+		// Pass initial space count as 0
+		print2DUtil(root, 0);
+	}
 
 	public void addRecursively(T data) {
 		BSTNode<T> newNode = new BSTNode<T>(data);
@@ -243,7 +243,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 			; // Nothing if found some duplicate node
 		}
 	}
-	
+
 	public BSTNode<T> searchNodeIteratively(T data) {
 		BSTNode<T> nodeFound = root;
 		boolean found = false;
@@ -259,10 +259,11 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 		}
 		return nodeFound;
 	}
-	
+
 	@Override
 	public T searchIteratively(T data) {
-		return searchNodeIteratively(data).data;
+		BSTNode<T> found = searchNodeIteratively(data);
+		return (found == null) ? null: found.data;
 	}
 
 	public T searchRecursively(T data) {
@@ -270,7 +271,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 			return null;
 		else {
 			BSTNode<T> nodeFound = searchRecursively(root, data);
-			return (nodeFound == null) ? null: nodeFound.data;
+			return (nodeFound == null) ? null : nodeFound.data;
 		}
 	}
 
@@ -327,7 +328,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 			currentNode = currentNode.right;
 		return currentNode;
 	}
-	
+
 	public BSTNode<T> getMaximumRecursively(BSTNode<T> localRoot) {
 		BSTNode<T> maximum = localRoot;
 		if (maximum.right != null)
@@ -372,24 +373,24 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 	public T getRootData() {
 		return this.root.data;
 	}
-	
+
 	public int NumberOfElements() {
 		return numberOfElements;
 	}
-	
-	public ArrayList<T> getNodes(){
+
+	public ArrayList<T> getNodes() {
 		ArrayList<T> nodes = new ArrayList<T>();
-		for(T nodeData : this) 
-			nodes.add(nodeData);	
+		for (T nodeData : this)
+			nodes.add(nodeData);
 		return nodes;
 	}
-	
+
 	public void reset() {
 		this.root = null;
 	}
-	
+
 	@Override
-	public Iterator<T> iterator(){
+	public Iterator<T> iterator() {
 		return new InorderIterator();
 	}
 
@@ -405,17 +406,17 @@ public class BinarySearchTree<T extends Comparable<T>> implements Iterable<T>, C
 		}
 
 		/**
-		 * Push all the nodes in the path from a given node to the leftmost node
-		 * in the subtree.
+		 * Push all the nodes in the path from a given node to the leftmost node in the
+		 * subtree.
 		 */
-		private void pushPathToMin (BSTNode<T> localRoot) {
+		private void pushPathToMin(BSTNode<T> localRoot) {
 			BSTNode<T> current = localRoot;
-			while(current != null) {
+			while (current != null) {
 				stack.push(current);
 				current = current.left;
 			}
 		}
-		
+
 		/** Is there another element in this iterator? */
 		public boolean hasNext() {
 			return !stack.isEmpty();

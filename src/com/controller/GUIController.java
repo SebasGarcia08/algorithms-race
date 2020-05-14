@@ -1,28 +1,29 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Random;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import com.model.BinarySearchTree;
+import com.model.DoublyLinkedList;
+import com.model.MyArrayList;
 import com.threads.Race;
 import com.threads.Race.Algorithm;
 import com.threads.Race.Mode;
+import com.threads.RaceThread;
 
-import javafx.animation.Interpolator;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -41,6 +42,12 @@ public class GUIController {
 	private JFXTextField textFieldCollectionSize;
 
 	@FXML
+	private FontAwesomeIconView faFlagLeft;
+
+	@FXML
+	private FontAwesomeIconView faFlagRight;
+
+	@FXML
 	private ToggleGroup toggleGroupMode;
 
 	@FXML
@@ -48,13 +55,6 @@ public class GUIController {
 
 	@FXML
 	private JFXButton btnExit;
-
-	/* RACE SCENE */
-	@FXML
-	private AnchorPane raceAnchor;
-
-	@FXML
-	private Pane chronometerPane;
 
 	@FXML
 	private Label labelHours;
@@ -69,9 +69,6 @@ public class GUIController {
 	private Label labelMillis;
 
 	@FXML
-	private JFXButton btnExit1;
-
-	@FXML
 	private JFXProgressBar BSTProgressBar;
 
 	@FXML
@@ -80,30 +77,81 @@ public class GUIController {
 	@FXML
 	private JFXProgressBar ALProgressBar;
 
-	private long timeCounter = 0;
+	@FXML
+	private Label lbFinalResultBST;
+
+	@FXML
+	private Label lbFinalResultDLL;
+
+	@FXML
+	private Label lbFinalResultAL;
+
+	public long timeCounter = 0L;
+
+	public int numOfThreadsFinished;
 
 	private Timeline chronometerTimeLine;
-
+	
 	public void initialize() {
 		chronometerTimeLine = new Timeline(new KeyFrame(Duration.millis(1), (e) -> {
 			updateChronometer(timeCounter++);
 		}));
-
 		chronometerTimeLine.setCycleCount(Timeline.INDEFINITE);
+		
+		
+		
 	}
 
 	@FXML
-	private void loadRaceScene(ActionEvent event) throws IOException {
-		switch2RaceScene();
-		chronometerTimeLine.play();
+	private void go(ActionEvent event) throws IOException, InterruptedException {
+		timeCounter = 0L;
+		numOfThreadsFinished = 0;
+		JFXProgressBar[] pbs = new JFXProgressBar[] { BSTProgressBar, DLLProgressBar, ALProgressBar };
+		for (JFXProgressBar pb : pbs)
+			pb.setProgress(0);
 
 		Algorithm algorithm = getAlgorithm();
 		Mode mode = getMode();
 		Long N = Long.parseLong(textFieldCollectionSize.getText());
 
-		Race race = new Race(this, mode, algorithm, N);
-		race.setDaemon(true);
-		race.start();
+		Random r = new Random();
+		RaceThread[] raceThreads = createThreads(mode, algorithm, N, r.nextLong());
+
+		chronometerTimeLine.play();
+		
+		for(int i = 0; i < pbs.length; i++) {
+			pbs[i].progressProperty().bind(raceThreads[i].progressProperty());
+		}
+		
+		for(RaceThread t : raceThreads) {
+			t.go();
+		}
+						
+		System.out.println(numOfThreadsFinished);
+	}
+	
+	public RaceThread[] createThreads(Mode mode, Algorithm algorithm, long n, long seed) {
+		return new RaceThread[] {
+				new RaceThread(this, new BinarySearchTree<Long>(), mode, algorithm, n, seed),
+				new RaceThread(this, new DoublyLinkedList<Long>(), mode, algorithm, n, seed),
+				new RaceThread(this, new MyArrayList<Long>(), mode, algorithm, n, seed) };
+	}
+
+	public void stopChronometer() {
+		if(numOfThreadsFinished == 3)
+			chronometerTimeLine.stop();
+	}
+	
+	public void resetProgressBars() {
+		JFXProgressBar[] pbs = new JFXProgressBar[] { BSTProgressBar, DLLProgressBar, ALProgressBar };
+		for(int i = 0; i < pbs.length; i++) {
+			pbs[i].setProgress(0);
+			pbs[i].progressProperty().unbind();			
+		}
+	}
+
+	public void updateProgressBar(JFXProgressBar pb, double progress) {
+		pb.setProgress(progress);
 	}
 
 	public Mode getMode() {
@@ -132,27 +180,6 @@ public class GUIController {
 		}
 	}
 
-	public void switch2RaceScene() throws IOException {
-		FXMLLoader fxmll = new FXMLLoader();
-		fxmll.setLocation(getClass().getResource("/resources/Race.fxml"));
-		fxmll.setController(this);
-		Parent root = fxmll.load();
-		Scene scene = btnRun.getScene();
-
-		root.translateXProperty().set(scene.getHeight());
-
-		parentContainer.getChildren().add(root);
-
-		Timeline timeline = new Timeline();
-		KeyValue kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-		KeyFrame kf = new KeyFrame(Duration.seconds(0.1), kv);
-		timeline.getKeyFrames().add(kf);
-		timeline.setOnFinished(t -> {
-			parentContainer.getChildren().remove(configurationAnchor);
-		});
-		timeline.play();
-	}
-
 	public void exit(ActionEvent e) {
 		System.exit(0);
 	}
@@ -172,10 +199,9 @@ public class GUIController {
 		labelMinutes.setText(sMin);
 		labelHours.setText(sHours);
 	}
-
+	
 	public void showFinalResults(Race race) {
 		System.out.println("Finish");
-		System.out.println(race.getDurationMillis());
 		chronometerTimeLine.stop();
 	}
 

@@ -9,32 +9,31 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-	
+
 	private static double xOffset = 0;
 	private static double yOffset = 0;
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader fxmll = new FXMLLoader();
 		fxmll.setLocation(getClass().getResource("/resources/Main.fxml"));
 
 		StackPane root = fxmll.load();
-				
 		root.setOnMousePressed((event) -> { // Ends events to make window draggable
-				xOffset = event.getSceneX();
-				yOffset = event.getSceneY();
+			xOffset = event.getSceneX();
+			yOffset = event.getSceneY();
 		});
 
 		root.setOnMouseDragged((event) -> {
-				primaryStage.setX(event.getScreenX() - xOffset);
-				primaryStage.setY(event.getScreenY() - yOffset);
+			primaryStage.setX(event.getScreenX() - xOffset);
+			primaryStage.setY(event.getScreenY() - yOffset);
 		}); // Ends events to make window draggable
-		
+
 		Scene scene = new Scene(root);
 
 		primaryStage.setResizable(false);
 		primaryStage.centerOnScreen();
-		
+
 		scene.setFill(Color.TRANSPARENT);
 		primaryStage.setTitle("Algorithms race");
 		primaryStage.setScene(scene);

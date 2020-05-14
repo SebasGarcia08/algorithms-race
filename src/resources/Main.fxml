@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
-<?import com.jfoenix.controls.JFXTogglePane?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="parentContainer" prefWidth="684.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.GUIController">
+<StackPane fx:id="parentContainer" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="343.0" prefWidth="858.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controller.GUIController">
    <children>
-      <AnchorPane fx:id="configurationAnchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="684.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css">
+      <AnchorPane fx:id="configurationAnchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="343.0" prefWidth="862.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css">
          <children>
-            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="522.0" layoutY="194.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#loadRaceScene" prefHeight="64.0" prefWidth="138.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" text="GO!" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="180.0" layoutY="253.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#go" prefHeight="29.0" prefWidth="139.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" text="GO!" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="35.0" />
                </font>
@@ -30,7 +37,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="PLAY" size="30" text="" wrappingWidth="25.000006556510925" />
                </graphic>
             </JFXButton>
-            <HBox layoutX="212.0" layoutY="214.0" prefHeight="44.0" prefWidth="262.0">
+            <HBox layoutX="30.0" layoutY="59.0" prefHeight="44.0" prefWidth="262.0">
                <children>
                   <Label prefHeight="43.0" prefWidth="44.0" text="N:" textFill="WHITE">
                      <font>
@@ -40,8 +47,7 @@
                   <JFXTextField fx:id="textFieldCollectionSize" focusColor="#ee7133f0" labelFloat="true" prefHeight="37.0" prefWidth="204.0" promptText="Size of collections " unFocusColor="WHITE" />
                </children>
             </HBox>
-            <JFXTogglePane layoutX="538.0" layoutY="81.0" prefWidth="115.0" />
-            <HBox alignment="BASELINE_CENTER" layoutX="134.0" layoutY="14.0" prefHeight="44.0" prefWidth="417.0">
+            <HBox alignment="BASELINE_CENTER" layoutX="223.0" layoutY="14.0" prefHeight="44.0" prefWidth="417.0">
                <children>
                   <FontAwesomeIconView fx:id="faFlagLeft" fill="WHITE" glyphName="FLAG_CHECKERED" rotate="190.0" size="35" text="" wrappingWidth="32.640703201293945">
                      <rotationAxis>
@@ -56,7 +62,7 @@
                   <FontAwesomeIconView fx:id="faFlagRight" fill="WHITE" glyphName="FLAG_CHECKERED" size="35" wrappingWidth="37.99998617172241" />
                </children>
             </HBox>
-            <VBox alignment="CENTER" layoutX="269.0" layoutY="65.0" prefHeight="142.0" prefWidth="146.0">
+            <VBox alignment="CENTER" layoutX="176.0" layoutY="115.0" prefHeight="142.0" prefWidth="146.0">
                <children>
                   <Label text="MODE" textFill="WHITE">
                      <font>
@@ -86,7 +92,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" layoutX="39.0" layoutY="65.0" prefHeight="202.0" prefWidth="131.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="39.0" AnchorPane.rightAnchor="514.0" AnchorPane.topAnchor="65.0">
+            <VBox alignment="CENTER" layoutX="30.0" layoutY="115.0" prefHeight="196.0" prefWidth="131.0">
                <children>
                   <Label text="ALGORITHM" textFill="WHITE">
                      <font>
@@ -125,15 +131,177 @@
                   </HBox>
                </children>
             </VBox>
-            <JFXButton fx:id="btnExit" layoutX="659.0" onAction="#exit" prefHeight="29.0" prefWidth="19.0" ripplerFill="RED">
+            <JFXButton fx:id="btnExit" layoutX="837.0" layoutY="7.0" onAction="#exit" prefHeight="29.0" prefWidth="19.0" ripplerFill="RED">
                <font>
                   <Font name="Franklin Gothic Medium" size="1.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="#dad0f2" glyphName="TIMES" size="20" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
+            <VBox alignment="TOP_CENTER" layoutX="331.0" layoutY="98.0" minWidth="-Infinity" prefHeight="211.0" prefWidth="530.0">
+               <children>
+                  <Pane fx:id="chronometerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="397.0">
+                     <children>
+                        <HBox layoutX="8.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="52.0" prefWidth="379.0">
+                           <children>
+                              <Label fx:id="labelHours" alignment="CENTER" prefHeight="69.0" prefWidth="69.0" text="00" textFill="WHITE">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="50.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelMinutes" alignment="CENTER" prefHeight="69.0" prefWidth="69.0" text="00" textFill="WHITE">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="50.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelSeconds" alignment="CENTER" prefHeight="69.0" prefWidth="91.0" text="00" textFill="WHITE">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="50.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="96.0" prefWidth="23.0" text=":" textFill="WHITE">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="30.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="labelMillis" alignment="CENTER" prefHeight="69.0" prefWidth="99.0" text="00" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="DejaVu Sans Condensed Bold" size="50.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+                  <HBox alignment="CENTER" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="157.0" prefWidth="508.0">
+                     <children>
+                        <GridPane prefHeight="173.0" prefWidth="601.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="79.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="0.0" prefWidth="69.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="281.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="84.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="72.0" minHeight="9.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="92.0" minHeight="6.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <HBox alignment="CENTER" GridPane.columnIndex="2">
+                                 <children>
+                                    <JFXProgressBar fx:id="BSTProgressBar" prefHeight="20.0" prefWidth="307.0" progress="0.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="38.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <JFXProgressBar fx:id="DLLProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <JFXProgressBar fx:id="ALProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" />
+                                 </children>
+                              </HBox>
+                              <Pane>
+                                 <children>
+                                    <Circle fill="#1f93ff00" layoutX="40.0" layoutY="10.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                                    <Circle fill="#1f93ff00" layoutX="14.0" layoutY="27.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                                    <Circle fill="#1f93ff00" layoutX="65.0" layoutY="27.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                                    <Line endX="15.0" endY="10.0" fill="WHITE" layoutX="40.0" layoutY="10.0" startX="9.0" startY="6.0" stroke="WHITE" strokeWidth="4.0" />
+                                    <Line endX="19.0" endY="8.0" fill="WHITE" layoutX="10.0" layoutY="11.0" rotate="180.0" startX="8.0" startY="2.0" stroke="WHITE" strokeWidth="4.0">
+                                       <rotationAxis>
+                                          <Point3D y="1.0" />
+                                       </rotationAxis>
+                                    </Line>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Circle fill="#1f93ff00" layoutX="14.0" layoutY="20.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                                    <Circle fill="#1f93ff00" layoutX="65.0" layoutY="20.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                                    <Circle fill="#1f93ff00" layoutX="40.0" layoutY="20.0" radius="10.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="3.0" />
+                                    <Line endX="6.0" layoutX="24.0" layoutY="20.0" startX="1.5" stroke="WHITE" strokeWidth="4.0" />
+                                    <Line endX="22.0" endY="-9.0" layoutX="34.0" layoutY="30.0" startX="16.0" startY="-10.0" stroke="WHITE" strokeWidth="4.0" />
+                                 </children>
+                              </Pane>
+                              <Pane GridPane.rowIndex="2">
+                                 <children>
+                                    <HBox alignment="CENTER" layoutX="2.0" layoutY="1.0" prefHeight="39.0" prefWidth="75.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f96ff00" height="29.0" stroke="WHITE" strokeType="INSIDE" width="25.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f96ff00" height="29.0" stroke="WHITE" strokeType="INSIDE" width="25.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f96ff00" height="29.0" stroke="WHITE" strokeType="INSIDE" width="25.0" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </Pane>
+                              <HBox alignment="CENTER" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label text="BST" textFill="WHITE">
+                                       <font>
+                                          <Font name="Franklin Gothic Medium" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label text="DLL" textFill="WHITE">
+                                       <font>
+                                          <Font name="Franklin Gothic Medium" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label text="AL" textFill="WHITE">
+                                       <font>
+                                          <Font name="Franklin Gothic Medium" size="20.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" GridPane.columnIndex="3">
+                                 <children>
+                                    <Label fx:id="lbFinalResultBST" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label fx:id="lbFinalResultDLL" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label fx:id="lbFinalResultAL" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
       </AnchorPane>
    </children>
 </StackPane>
