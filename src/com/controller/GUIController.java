@@ -1,22 +1,19 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.Dictionary;
 import java.util.Random;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
+import com.model.Algorithm;
 import com.model.BinarySearchTree;
 import com.model.DoublyLinkedList;
+import com.model.Mode;
 import com.model.MyArrayList;
-import com.threads.Race;
-import com.threads.Race.Algorithm;
-import com.threads.Race.Mode;
 import com.threads.RaceThread;
 import com.ui.Ball;
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -247,12 +244,7 @@ public class GUIController {
 		labelMinutes.setText(sMin);
 		labelHours.setText(sHours);
 	}
-
-	public void showFinalResults(Race race) {
-		System.out.println("Finish");
-		chronometerTimeLine.stop();
-	}
-
+	
 	/**
 	 * @return the lbFinalResultBST
 	 */

@@ -4,16 +4,15 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 import com.controller.GUIController;
+import com.model.Algorithm;
 import com.model.BinarySearchTree;
 import com.model.CompetitiveDataStructure;
 import com.model.DoublyLinkedList;
+import com.model.Mode;
 import com.model.MyArrayList;
-import com.threads.Race.Algorithm;
-import com.threads.Race.Mode;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 
 public class RaceThread extends Service<Void> {
