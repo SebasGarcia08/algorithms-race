@@ -1,7 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.Dictionary;
 import java.util.Random;
 
 import com.jfoenix.controls.JFXButton;
@@ -15,6 +15,7 @@ import com.threads.Race;
 import com.threads.Race.Algorithm;
 import com.threads.Race.Mode;
 import com.threads.RaceThread;
+import com.ui.Ball;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
@@ -26,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class GUIController {
@@ -38,6 +40,9 @@ public class GUIController {
 
 	@FXML
 	private JFXButton btnRun;
+	
+	@FXML
+	private JFXButton btnStop;
 
 	@FXML
 	private JFXTextField textFieldCollectionSize;
@@ -94,6 +99,18 @@ public class GUIController {
 	private Timeline chronometerTimeLine;
 
 	private RaceThread[] raceThreads;
+	
+    @FXML
+    private Circle outerCircle;
+    
+    private Ball outerBall;
+
+    @FXML
+    private Circle innerCircle;
+
+    private Ball innerBall;
+    
+    private boolean expandingBall;
 
 	public void initialize() {
 		chronometerTimeLine = new Timeline(new KeyFrame(Duration.millis(1), (e) -> {
@@ -108,13 +125,18 @@ public class GUIController {
 		DLLProgressBar.progressProperty().bind(raceThreads[1].progressProperty());
 		ALProgressBar.progressProperty().bind(raceThreads[2].progressProperty());
 		
-		btnRun.setText("");
+		outerBall = new Ball(outerCircle.getRadius(), 31, 15);
+		innerBall = new Ball(innerCircle.getRadius(), 31, 15);
+		this.expandingBall = true;
 	}
 
 	@FXML
 	private void go(ActionEvent event) throws IOException, InterruptedException {
 		this.timeCounter = 0L;
 		this.numOfThreadsFinished = 0;
+		this.expandingBall = true;
+		btnRun.setDisable(true);
+		btnStop.setDisable(false);
 		
 		Algorithm algorithm = getAlgorithm();
 		Mode mode = getMode();
@@ -126,7 +148,31 @@ public class GUIController {
 		
 		for (RaceThread race : raceThreads) {
 			race.go(mode, algorithm, N, r.nextLong());
-		}		
+		}	
+		
+		Thread t = new Thread() {
+			public void run() {
+				while(expandingBall) {
+					innerBall.move();
+					outerBall.move();
+					
+					Platform.runLater(() -> updateCircles());
+					
+    				try {
+						Thread.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		t.setDaemon(true);
+		t.start();
+	}
+	
+	public void updateCircles() {
+		outerCircle.setRadius(outerBall.getRadious());
+		innerCircle.setRadius(innerBall.getRadious());
 	}
 	
 	@FXML
@@ -138,8 +184,14 @@ public class GUIController {
 	}
 	
 	public void stopChronometer() {
-		if (numOfThreadsFinished == 3)
+		if (numOfThreadsFinished == 3) {
 			chronometerTimeLine.stop();
+			expandingBall = false;
+			outerCircle.setRadius(31);
+			innerCircle.setRadius(15);
+			btnRun.setDisable(false);
+			btnStop.setDisable(true);
+		}
 	}
 
 	public Mode getMode() {
@@ -170,6 +222,10 @@ public class GUIController {
 
 	public void exit(ActionEvent e) {
 		System.exit(0);
+	}
+	
+	public void moveCircles() {
+		
 	}
 
 	public void updateChronometer(long timeCounter) {

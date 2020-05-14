@@ -146,11 +146,26 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <VBox alignment="TOP_CENTER" layoutX="331.0" layoutY="98.0" minWidth="-Infinity" prefHeight="211.0" prefWidth="530.0">
-               <children>
-                  <Pane fx:id="chronometerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="397.0">
+            <JFXButton fx:id="btnStop" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="268.0" layoutY="253.0" onAction="#stop" prefHeight="47.0" prefWidth="48.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="1.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="58.0">
                      <children>
-                        <HBox layoutX="8.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="52.0" prefWidth="379.0">
+                        <FontAwesomeIconView fill="WHITE" glyphName="STOP" size="30" wrappingWidth="38.000006556510925" />
+                     </children>
+                  </HBox>
+               </graphic>
+            </JFXButton>
+            <Pane layoutX="349.0" layoutY="62.0" prefHeight="266.0" prefWidth="489.0">
+               <children>
+                  <Pane fx:id="chronometerPane" layoutX="8.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="396.0">
+                     <children>
+                        <HBox layoutX="8.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="52.0" prefWidth="374.0">
                            <children>
                               <Label fx:id="labelHours" alignment="CENTER" prefHeight="69.0" prefWidth="69.0" text="00" textFill="WHITE">
                                  <font>
@@ -191,7 +206,7 @@
                         </HBox>
                      </children>
                   </Pane>
-                  <HBox alignment="CENTER" depthTest="DISABLE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="157.0" prefWidth="508.0">
+                  <HBox alignment="CENTER" depthTest="DISABLE" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="157.0" prefWidth="489.0">
                      <children>
                         <GridPane prefHeight="173.0" prefWidth="601.0">
                            <columnConstraints>
@@ -300,23 +315,10 @@
                         </GridPane>
                      </children>
                   </HBox>
+                  <Circle fx:id="outerCircle" fill="#0b486b" layoutX="451.0" layoutY="60.0" radius="31.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Circle fx:id="innerCircle" fill="#eee8e8" layoutX="451.0" layoutY="60.0" radius="15.0" stroke="TRANSPARENT" strokeType="INSIDE" />
                </children>
-            </VBox>
-            <JFXButton fx:id="btnStop" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="268.0" layoutY="253.0" onAction="#stop" prefHeight="47.0" prefWidth="48.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Franklin Gothic Medium" size="1.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="58.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="STOP" size="30" wrappingWidth="38.000006556510925" />
-                     </children>
-                  </HBox>
-               </graphic>
-            </JFXButton>
+            </Pane>
          </children>
          <cursor>
             <Cursor fx:constant="MOVE" />

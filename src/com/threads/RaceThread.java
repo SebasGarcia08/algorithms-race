@@ -58,7 +58,6 @@ public class RaceThread extends Service<Void> {
 		});
 		
 		setOnRunning((e) -> {
-			
 			System.out.println("Running");
 		});
 	}
