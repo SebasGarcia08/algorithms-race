@@ -42,7 +42,10 @@ public class RaceThread extends Service<Void> {
 			System.out.println("Failed");
 			dataStructure.reset();
 			controller.stopChronometer();
-			boolean isArrayList = dataStructure instanceof MyArrayList<?>;
+			
+			boolean isBST = amIaBinarySearchTree();
+			boolean isDLL = AmIaDoublyLinkedList();
+			boolean isAL = amIanArrayList();
 			
 		});
 		
@@ -95,11 +98,11 @@ public class RaceThread extends Service<Void> {
 		}
 	}
 	
-	public boolean AmIaBinarySearchTree() {
+	public boolean amIaBinarySearchTree() {
 		return dataStructure instanceof BinarySearchTree<?>;
 	}
 	
-	public boolean AmIanArrayList() {
+	public boolean amIanArrayList() {
 		return dataStructure instanceof MyArrayList<?>;
 	}
 	
