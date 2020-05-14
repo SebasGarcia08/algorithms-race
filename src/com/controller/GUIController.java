@@ -125,6 +125,10 @@ public class GUIController {
 		DLLProgressBar.progressProperty().bind(raceThreads[1].progressProperty());
 		ALProgressBar.progressProperty().bind(raceThreads[2].progressProperty());
 		
+		lbFinalResultBST.textProperty().bind(raceThreads[0].messageProperty());
+		lbFinalResultDLL.textProperty().bind(raceThreads[1].messageProperty());
+		lbFinalResultAL.textProperty().bind(raceThreads[2].messageProperty());
+		
 		outerBall = new Ball(outerCircle.getRadius(), 31, 15);
 		innerBall = new Ball(innerCircle.getRadius(), 31, 15);
 		this.expandingBall = true;
@@ -250,23 +254,46 @@ public class GUIController {
 	}
 
 	/**
-	 * @return the bSTProgressBar
+	 * @return the lbFinalResultBST
 	 */
-	public JFXProgressBar getBSTProgressBar() {
-		return BSTProgressBar;
+	public Label getLbFinalResultBST() {
+		return lbFinalResultBST;
 	}
 
 	/**
-	 * @return the dLLProgressBar
+	 * @return the lbFinalResultDLL
 	 */
-	public JFXProgressBar getDLLProgressBar() {
-		return DLLProgressBar;
+	public Label getLbFinalResultDLL() {
+		return lbFinalResultDLL;
 	}
 
 	/**
-	 * @return the aLProgressBar
+	 * @return the lbFinalResultAL
 	 */
-	public JFXProgressBar getALProgressBar() {
-		return ALProgressBar;
+	public Label getLbFinalResultAL() {
+		return lbFinalResultAL;
 	}
+
+	/**
+	 * @param lbFinalResultBST the lbFinalResultBST to set
+	 */
+	public void setLbFinalResultBST(Label lbFinalResultBST) {
+		this.lbFinalResultBST = lbFinalResultBST;
+	}
+
+	/**
+	 * @param lbFinalResultDLL the lbFinalResultDLL to set
+	 */
+	public void setLbFinalResultDLL(Label lbFinalResultDLL) {
+		this.lbFinalResultDLL = lbFinalResultDLL;
+	}
+
+	/**
+	 * @param lbFinalResultAL the lbFinalResultAL to set
+	 */
+	public void setLbFinalResultAL(Label lbFinalResultAL) {
+		this.lbFinalResultAL = lbFinalResultAL;
+	}
+	
+	
 }

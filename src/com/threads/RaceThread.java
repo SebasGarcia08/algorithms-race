@@ -13,6 +13,7 @@ import com.threads.Race.Mode;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 
 public class RaceThread extends Service<Void> {
@@ -24,11 +25,15 @@ public class RaceThread extends Service<Void> {
 	private GUIController controller;
 	private long durationMillis;
 	private Algorithm algorithm;
-	
+
 	public RaceThread(GUIController controller, CompetitiveDataStructure<Long> ds) {
 		this.dataStructure = ds;
 		this.controller = controller;
-		
+
+		boolean isBST = amIaBinarySearchTree();
+		boolean isDLL = AmIaDoublyLinkedList();
+		boolean isAL = amIanArrayList();
+
 		// if succeeded
 		setOnSucceeded(s -> {
 			controller.numOfThreadsFinished++;
@@ -42,13 +47,8 @@ public class RaceThread extends Service<Void> {
 			System.out.println("Failed");
 			dataStructure.reset();
 			controller.stopChronometer();
-			
-			boolean isBST = amIaBinarySearchTree();
-			boolean isDLL = AmIaDoublyLinkedList();
-			boolean isAL = amIanArrayList();
-			
 		});
-		
+
 		// if cancelled
 		setOnCancelled(cancelled -> {
 			controller.numOfThreadsFinished++;
@@ -56,7 +56,7 @@ public class RaceThread extends Service<Void> {
 			dataStructure.reset();
 			controller.stopChronometer();
 		});
-		
+
 		setOnRunning((e) -> {
 			System.out.println("Running");
 		});
@@ -96,56 +96,66 @@ public class RaceThread extends Service<Void> {
 			start();
 		}
 	}
-	
+
 	public boolean amIaBinarySearchTree() {
 		return dataStructure instanceof BinarySearchTree<?>;
 	}
-	
+
 	public boolean amIanArrayList() {
 		return dataStructure instanceof MyArrayList<?>;
 	}
-	
+
 	public boolean AmIaDoublyLinkedList() {
-		return dataStructure instanceof DoublyLinkedList<?>;		
+		return dataStructure instanceof DoublyLinkedList<?>;
 	}
-	
+
 	public long getDurationMillis() {
 		return this.durationMillis;
 	}
-	
+
 	@Override
 	protected Task<Void> createTask() {
 		return new Task<Void>() {
 			@Override
 			public Void call() {
 				this.updateProgress(0, 1);
-				if (algorithm != Algorithm.ADD) {
-					this.updateProgress(ProgressIndicator.INDETERMINATE_PROGRESS, 1);
-					this.updateMessage("Adding elements...");
-					Random localRandom = new Random();
-					for(long i = 0; i <= numOfOperationsPending; i++) {
-						dataStructure.addIteratively(localRandom.nextLong());						
+				try {
+					if (algorithm != Algorithm.ADD) {
+						this.updateProgress(ProgressIndicator.INDETERMINATE_PROGRESS, 1);
+						this.updateMessage("Adding elements...");
+						Random localRandom = new Random();
+						for (long i = 0; i <= numOfOperationsPending; i++) {
+							dataStructure.addIteratively(localRandom.nextLong());
+						}
+					}
+				} catch (StackOverflowError e) {
+					updateMessage("Stackoverflow");
+					cancel();
+				}
+				if (!isCancelled()) {
+					try {
+						this.updateMessage("Running...");
+						long start = System.currentTimeMillis();
+						while (numOfOperationsDone <= numOfOperationsPending) {
+							if (isCancelled())
+								break;
+							methodSelected.accept(random.nextLong());
+							updateProgress(numOfOperationsDone, numOfOperationsPending);
+							numOfOperationsDone++;
+						}
+						durationMillis = System.currentTimeMillis() - start;
+						String durationString = millis2TimeString(durationMillis);
+						updateMessage(durationString);
+					} catch (StackOverflowError e) {
+						this.updateMessage("Stackoverflow");
+						cancel();
 					}
 				}
-				
-				this.updateMessage("Running...");
-				long start = System.currentTimeMillis();
-				while (numOfOperationsDone <= numOfOperationsPending) {
-					if (isCancelled())
-						break;
-					methodSelected.accept(random.nextLong());
-					updateProgress(numOfOperationsDone, numOfOperationsPending);
-					numOfOperationsDone++;
-				}
-				
-				durationMillis = System.currentTimeMillis() - start;
-				String durationString = millis2TimeString(durationMillis);
-				updateMessage(durationString);
 				return null;
 			}
 		};
 	}
-	
+
 	public String millis2TimeString(long time) {
 		long milliseconds = time % 1000;
 		long seconds = (time / 1000) % 60;
