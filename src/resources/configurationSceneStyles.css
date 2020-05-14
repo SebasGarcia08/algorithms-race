@@ -42,6 +42,23 @@
 	-fx-rotate: 20;
 }
 
+.progress-indicator {
+  -fx-progress-color : #1fb829;
+ }
+ 
+ .progress-indicator .percentage {
+    -fx-fill: #ffffff;
+}
+ 
+ .jfx-progress-bar > .track, .jfx-progress-bar > .bar {
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.jfx-progress-bar {
+  -fx-background-color : #000000;
+ }
+
 .configurationScene { 
 	#pane {
     -fx-background-size: 1200.0 900.0;

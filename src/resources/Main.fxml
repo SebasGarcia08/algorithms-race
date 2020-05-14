@@ -8,6 +8,7 @@
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -26,7 +27,7 @@
    <children>
       <AnchorPane fx:id="configurationAnchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="343.0" prefWidth="862.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css">
          <children>
-            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="179.0" layoutY="253.0" onAction="#go" prefHeight="47.0" prefWidth="75.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="199.0" layoutY="253.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#go" prefHeight="47.0" prefWidth="48.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="1.0" />
                </font>
@@ -34,9 +35,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="118.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="31.0" prefWidth="50.0">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="PLAY" size="30" text="" wrappingWidth="61.000006556510925" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLAY" size="30" text="" wrappingWidth="25.000006556510925" />
                      </children>
                   </HBox>
                </graphic>
@@ -146,7 +147,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btnStop" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="268.0" layoutY="253.0" onAction="#stop" prefHeight="47.0" prefWidth="48.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="btnStop" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="257.0" layoutY="253.0" onAction="#stop" prefHeight="47.0" prefWidth="48.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Medium" size="1.0" />
                </font>
@@ -154,14 +155,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="58.0">
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="31.0" prefWidth="45.0">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="STOP" size="30" wrappingWidth="38.000006556510925" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="STOP" size="30" wrappingWidth="25.999981462955475" />
                      </children>
                   </HBox>
                </graphic>
             </JFXButton>
-            <Pane layoutX="335.0" layoutY="62.0" prefHeight="266.0" prefWidth="518.0">
+            <Pane layoutX="335.0" layoutY="62.0" prefHeight="266.0" prefWidth="521.0">
                <children>
                   <Pane fx:id="chronometerPane" layoutX="8.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="62.0" prefWidth="396.0">
                      <children>
@@ -211,9 +212,10 @@
                         <GridPane prefHeight="165.0" prefWidth="534.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="79.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="0.0" prefWidth="69.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="244.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="114.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="0.0" prefWidth="57.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="229.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="34.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="305.0" minWidth="10.0" prefWidth="122.0" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
@@ -223,17 +225,17 @@
                            <children>
                               <HBox alignment="CENTER" GridPane.columnIndex="2">
                                  <children>
-                                    <JFXProgressBar fx:id="BSTProgressBar" prefHeight="20.0" prefWidth="307.0" progress="0.0" />
+                                    <JFXProgressBar fx:id="BSTProgressBar" prefHeight="20.0" prefWidth="307.0" progress="0.0" styleClass="jfx-progress-bar" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="38.0" prefWidth="318.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <JFXProgressBar fx:id="DLLProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" />
+                                    <JFXProgressBar fx:id="DLLProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" styleClass="jfx-progress-bar" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
-                                    <JFXProgressBar fx:id="ALProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" />
+                                    <JFXProgressBar fx:id="ALProgressBar" prefHeight="20.0" prefWidth="500.0" progress="0.0" styleClass="jfx-progress-bar" />
                                  </children>
                               </HBox>
                               <Pane>
@@ -296,19 +298,34 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="54.0" prefWidth="122.0" GridPane.columnIndex="3">
+                              <HBox alignment="CENTER" prefHeight="54.0" prefWidth="122.0" GridPane.columnIndex="4">
                                  <children>
                                     <Label fx:id="lbFinalResultBST" prefHeight="16.0" prefWidth="150.0" textFill="WHITE" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <HBox alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                  <children>
-                                    <Label fx:id="lbFinalResultDLL" prefHeight="16.0" prefWidth="111.0" textFill="WHITE" />
+                                    <Label fx:id="lbFinalResultDLL" prefHeight="16.0" prefWidth="137.0" textFill="WHITE" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                              <HBox alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                  <children>
                                     <Label fx:id="lbFinalResultAL" prefHeight="16.0" prefWidth="107.0" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3">
+                                 <children>
+                                    <ProgressIndicator fx:id="BSTProgressIndicator" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" progress="0.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <children>
+                                    <ProgressIndicator fx:id="DLLProgressIndicator" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="42.0" progress="0.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="BOTTOM_CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <children>
+                                    <ProgressIndicator fx:id="ALProgressIndicator" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="40.0" progress="0.0" />
                                  </children>
                               </HBox>
                            </children>

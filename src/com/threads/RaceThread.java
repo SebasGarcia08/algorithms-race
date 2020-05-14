@@ -11,6 +11,7 @@ import com.model.DoublyLinkedList;
 import com.model.Mode;
 import com.model.MyArrayList;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.scene.control.ProgressIndicator;
@@ -24,40 +25,53 @@ public class RaceThread extends Service<Void> {
 	private GUIController controller;
 	private long durationMillis;
 	private Algorithm algorithm;
+	private String dataStructureName = "";
 
 	public RaceThread(GUIController controller, CompetitiveDataStructure<Long> ds) {
 		this.dataStructure = ds;
 		this.controller = controller;
 
-		boolean isBST = amIaBinarySearchTree();
-		boolean isDLL = AmIaDoublyLinkedList();
-		boolean isAL = amIanArrayList();
-
+		boolean thisIsBST = amIaBinarySearchTree();
+		boolean thisIsDLL = AmIaDoublyLinkedList();
+		boolean thisIsAL = amIanArrayList();
+		
+		if (thisIsBST) {
+			dataStructureName = "Binary Search Tree";
+		} else if (thisIsDLL) {
+			dataStructureName = "Doubly Linked List";
+		} else {
+			dataStructureName = "ArrayList";
+		}
+		
 		// if succeeded
 		setOnSucceeded(s -> {
 			controller.numOfThreadsFinished++;
 			controller.stopChronometer();
 			dataStructure.reset();
+			if (controller.numOfThreadsFinished == 1) {
+				String title = "We have a winner!";
+				String body =  dataStructureName + " was the fastest! only took " + millis2TimeString(durationMillis);
+				controller.notificate(title, body, FontAwesomeIcon.TROPHY);
+			}
 		});
 
 		// if failed
 		setOnFailed(fail -> {
 			controller.numOfThreadsFinished++;
-			System.out.println("Failed");
 			dataStructure.reset();
 			controller.stopChronometer();
+			controller.notificate("Something wron!", "An error occured", FontAwesomeIcon.WARNING);
 		});
 
 		// if cancelled
 		setOnCancelled(cancelled -> {
 			controller.numOfThreadsFinished++;
-			System.out.println("cancelled");
 			dataStructure.reset();
-			controller.stopChronometer();
+			controller.resetComponents();
 		});
 
 		setOnRunning((e) -> {
-			System.out.println("Running");
+			
 		});
 	}
 
@@ -68,7 +82,7 @@ public class RaceThread extends Service<Void> {
 			this.numOfOperationsPending = n;
 			this.numOfOperationsDone = 0;
 			this.algorithm = algorithm;
-
+			
 			switch (algorithm) {
 			case ADD:
 				if (mode == Mode.ITERATIVE)
@@ -91,6 +105,7 @@ public class RaceThread extends Service<Void> {
 			default:
 				break;
 			}
+			dataStructure.reset();
 			reset();
 			start();
 		}
@@ -99,7 +114,7 @@ public class RaceThread extends Service<Void> {
 	public boolean amIaBinarySearchTree() {
 		return dataStructure instanceof BinarySearchTree<?>;
 	}
-
+	
 	public boolean amIanArrayList() {
 		return dataStructure instanceof MyArrayList<?>;
 	}
@@ -117,27 +132,32 @@ public class RaceThread extends Service<Void> {
 		return new Task<Void>() {
 			@Override
 			public Void call() {
-				this.updateProgress(0, 1);
+				this.updateProgress(0, numOfOperationsPending);
 				try {
-					if (algorithm != Algorithm.ADD) {
+					if (algorithm != Algorithm.ADD && !isCancelled()) {
 						this.updateProgress(ProgressIndicator.INDETERMINATE_PROGRESS, 1);
 						this.updateMessage("Adding elements...");
 						Random localRandom = new Random();
 						for (long i = 0; i <= numOfOperationsPending; i++) {
 							dataStructure.addIteratively(localRandom.nextLong());
 						}
+					} if (isCancelled()) {
+						this.updateProgress(0, numOfOperationsPending);
 					}
 				} catch (StackOverflowError e) {
 					updateMessage("Stackoverflow");
+					controller.notificate("StarckOverFlow!", dataStructureName + " is out of competence", FontAwesomeIcon.EXCLAMATION_CIRCLE);
+					this.updateProgress(0, numOfOperationsPending);
 					cancel();
-				}
-				if (!isCancelled()) {
+				} if (!isCancelled()) {
 					try {
 						this.updateMessage("Running...");
 						long start = System.currentTimeMillis();
 						while (numOfOperationsDone <= numOfOperationsPending) {
-							if (isCancelled())
+							if (isCancelled()) {
+								this.updateProgress(0, numOfOperationsPending);
 								break;
+							}
 							methodSelected.accept(random.nextLong());
 							updateProgress(numOfOperationsDone, numOfOperationsPending);
 							numOfOperationsDone++;
@@ -145,8 +165,11 @@ public class RaceThread extends Service<Void> {
 						durationMillis = System.currentTimeMillis() - start;
 						String durationString = millis2TimeString(durationMillis);
 						updateMessage(durationString);
+						updateTitle("title");
 					} catch (StackOverflowError e) {
 						this.updateMessage("Stackoverflow");
+						controller.notificate("StarckOverFlow!", dataStructureName + " is out of competence", FontAwesomeIcon.EXCLAMATION_CIRCLE);
+						this.updateProgress(0, numOfOperationsPending);
 						cancel();
 					}
 				}
