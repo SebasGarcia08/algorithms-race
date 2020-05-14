@@ -26,25 +26,29 @@
    <children>
       <AnchorPane fx:id="configurationAnchor" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="343.0" prefWidth="862.0" styleClass="configurationScene" stylesheets="@configurationSceneStyles.css">
          <children>
-            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" layoutX="180.0" layoutY="253.0" nodeOrientation="LEFT_TO_RIGHT" onAction="#go" prefHeight="29.0" prefWidth="139.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" text="GO!" textAlignment="CENTER" textFill="WHITE">
+            <JFXButton fx:id="btnRun" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="179.0" layoutY="253.0" onAction="#go" prefHeight="47.0" prefWidth="75.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Franklin Gothic Medium" size="35.0" />
+                  <Font name="Franklin Gothic Medium" size="1.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLAY" size="30" text="" wrappingWidth="25.000006556510925" />
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="118.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLAY" size="30" text="" wrappingWidth="61.000006556510925" />
+                     </children>
+                  </HBox>
                </graphic>
             </JFXButton>
-            <HBox layoutX="30.0" layoutY="59.0" prefHeight="44.0" prefWidth="262.0">
+            <HBox layoutX="30.0" layoutY="59.0" prefHeight="44.0" prefWidth="290.0">
                <children>
                   <Label prefHeight="43.0" prefWidth="44.0" text="N:" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Bold" size="37.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="textFieldCollectionSize" focusColor="#ee7133f0" labelFloat="true" prefHeight="37.0" prefWidth="204.0" promptText="Size of collections " unFocusColor="WHITE" />
+                  <JFXTextField fx:id="textFieldCollectionSize" focusColor="#ee7133f0" labelFloat="true" prefHeight="37.0" prefWidth="229.0" promptText="Size of collections " unFocusColor="WHITE" />
                </children>
             </HBox>
             <HBox alignment="BASELINE_CENTER" layoutX="223.0" layoutY="14.0" prefHeight="44.0" prefWidth="417.0">
@@ -298,6 +302,21 @@
                   </HBox>
                </children>
             </VBox>
+            <JFXButton fx:id="btnStop" alignment="BASELINE_LEFT" buttonType="RAISED" contentDisplay="CENTER" layoutX="268.0" layoutY="253.0" onAction="#stop" prefHeight="47.0" prefWidth="48.0" ripplerFill="#ff7d3ce3" styleClass="configurationScene" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Franklin Gothic Medium" size="1.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="58.0">
+                     <children>
+                        <FontAwesomeIconView fill="WHITE" glyphName="STOP" size="30" wrappingWidth="38.000006556510925" />
+                     </children>
+                  </HBox>
+               </graphic>
+            </JFXButton>
          </children>
          <cursor>
             <Cursor fx:constant="MOVE" />

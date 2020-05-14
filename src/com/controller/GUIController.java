@@ -19,6 +19,7 @@ import com.threads.RaceThread;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -91,67 +92,54 @@ public class GUIController {
 	public int numOfThreadsFinished;
 
 	private Timeline chronometerTimeLine;
-	
+
+	private RaceThread[] raceThreads;
+
 	public void initialize() {
 		chronometerTimeLine = new Timeline(new KeyFrame(Duration.millis(1), (e) -> {
 			updateChronometer(timeCounter++);
 		}));
 		chronometerTimeLine.setCycleCount(Timeline.INDEFINITE);
+
+		this.raceThreads = new RaceThread[] { new RaceThread(this, new BinarySearchTree<Long>()),
+				new RaceThread(this, new DoublyLinkedList<Long>()), new RaceThread(this, new MyArrayList<Long>()) };
 		
+		BSTProgressBar.progressProperty().bind(raceThreads[0].progressProperty());		
+		DLLProgressBar.progressProperty().bind(raceThreads[1].progressProperty());
+		ALProgressBar.progressProperty().bind(raceThreads[2].progressProperty());
 		
-		
+		btnRun.setText("");
 	}
 
 	@FXML
 	private void go(ActionEvent event) throws IOException, InterruptedException {
-		timeCounter = 0L;
-		numOfThreadsFinished = 0;
-		JFXProgressBar[] pbs = new JFXProgressBar[] { BSTProgressBar, DLLProgressBar, ALProgressBar };
-		for (JFXProgressBar pb : pbs)
-			pb.setProgress(0);
-
+		this.timeCounter = 0L;
+		this.numOfThreadsFinished = 0;
+		
 		Algorithm algorithm = getAlgorithm();
 		Mode mode = getMode();
 		Long N = Long.parseLong(textFieldCollectionSize.getText());
-
+		
 		Random r = new Random();
-		RaceThread[] raceThreads = createThreads(mode, algorithm, N, r.nextLong());
-
+		
 		chronometerTimeLine.play();
 		
-		for(int i = 0; i < pbs.length; i++) {
-			pbs[i].progressProperty().bind(raceThreads[i].progressProperty());
-		}
-		
-		for(RaceThread t : raceThreads) {
-			t.go();
-		}
-						
-		System.out.println(numOfThreadsFinished);
+		for (RaceThread race : raceThreads) {
+			race.go(mode, algorithm, N, r.nextLong());
+		}		
 	}
 	
-	public RaceThread[] createThreads(Mode mode, Algorithm algorithm, long n, long seed) {
-		return new RaceThread[] {
-				new RaceThread(this, new BinarySearchTree<Long>(), mode, algorithm, n, seed),
-				new RaceThread(this, new DoublyLinkedList<Long>(), mode, algorithm, n, seed),
-				new RaceThread(this, new MyArrayList<Long>(), mode, algorithm, n, seed) };
+	@FXML
+	public void stop(ActionEvent e) {
+		for (RaceThread race : raceThreads) {
+			if(race.isRunning()) 
+				race.cancel();
+		}	
 	}
-
+	
 	public void stopChronometer() {
-		if(numOfThreadsFinished == 3)
+		if (numOfThreadsFinished == 3)
 			chronometerTimeLine.stop();
-	}
-	
-	public void resetProgressBars() {
-		JFXProgressBar[] pbs = new JFXProgressBar[] { BSTProgressBar, DLLProgressBar, ALProgressBar };
-		for(int i = 0; i < pbs.length; i++) {
-			pbs[i].setProgress(0);
-			pbs[i].progressProperty().unbind();			
-		}
-	}
-
-	public void updateProgressBar(JFXProgressBar pb, double progress) {
-		pb.setProgress(progress);
 	}
 
 	public Mode getMode() {
@@ -199,7 +187,7 @@ public class GUIController {
 		labelMinutes.setText(sMin);
 		labelHours.setText(sHours);
 	}
-	
+
 	public void showFinalResults(Race race) {
 		System.out.println("Finish");
 		chronometerTimeLine.stop();

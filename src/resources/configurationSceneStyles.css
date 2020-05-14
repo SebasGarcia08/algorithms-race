@@ -22,7 +22,12 @@
 	-fx-background-color:  #000000;
 	-fx-background-radius: 10.0 10.0 10.0 10.0;
     -fx-border-radius: 10.0 10.0 10.0 10.0;
+}
 
+#btnStop{
+	-fx-background-color:  #e00d0d;
+	-fx-background-radius: 10.0 10.0 10.0 10.0;
+    -fx-border-radius: 10.0 10.0 10.0 10.0;
 }
 
 #chronometerPane{
