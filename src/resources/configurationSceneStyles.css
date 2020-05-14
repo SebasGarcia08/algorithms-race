@@ -1,0 +1,69 @@
+#configurationAnchor{
+	/* Nepal theme from https://uigradients.com/#Nepal */
+	/*-fx-background-color : linear-gradient(to left,
+		#de6161,
+		#3c69f0
+	); */
+	
+	/* Sunset from https://uigradients.com/#Sunset */
+	-fx-background-color : linear-gradient(to right,
+		#0B486B,
+		#F56217
+	);
+}
+
+#textFieldCollectionSize{
+	-fx-text-inner-color: white;
+	-fx-prompt-text-fill: white;
+	 -fx-font-size: 16.0px;
+}
+
+#btnRun{
+	-fx-background-color:  #000000;
+	-fx-background-radius: 10.0 10.0 10.0 10.0;
+    -fx-border-radius: 10.0 10.0 10.0 10.0;
+}
+
+#btnStop{
+	-fx-background-color:  #e00d0d;
+	-fx-background-radius: 10.0 10.0 10.0 10.0;
+    -fx-border-radius: 10.0 10.0 10.0 10.0;
+}
+
+#chronometerPane{
+    -fx-background-size: 1200.0 900.0;
+    -fx-background-radius: 15.0 15.0 15.0 15.0;
+    -fx-border-radius: 15.0 15.0 15.0 15.0;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 5px;	
+}
+
+#faFlagRight{
+	-fx-rotate: 20;
+}
+
+.progress-indicator {
+  -fx-progress-color : #1fb829;
+ }
+ 
+ .progress-indicator .percentage {
+    -fx-fill: #ffffff;
+}
+ 
+ .jfx-progress-bar > .track, .jfx-progress-bar > .bar {
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.jfx-progress-bar {
+  -fx-background-color : #000000;
+ }
+
+.configurationScene { 
+	#pane {
+    -fx-background-size: 1200.0 900.0;
+    -fx-background-radius: 10.0 10.0 10.0 10.0;
+    -fx-border-radius: 10.0 10.0 10.0 10.0;
+    -fx-background-color: #ffffff;
+  }	
+}

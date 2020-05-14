@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import com.model.BinarySearchTree;
+
 /**
  * @author Sebastián García Acosta
  *
@@ -79,7 +81,7 @@ public class BinarySearchTreeTests {
 		setupEmptyTree();
 		setupDeletion();
 		bst.deleteIteratively(50); // roots
-		assertTrue(bst.searchIteratively(50) == null);
+		assertTrue(bst.searchNodeIteratively(50) == null);
 		int expectedRoot = 46;
 		int actualRoot = bst.getRootData();
 		assertTrue("The root should be "  + expectedRoot + " not " + actualRoot, actualRoot == expectedRoot); // Check that the root is the in order successor, which is the maximum of
@@ -92,7 +94,7 @@ public class BinarySearchTreeTests {
 		Integer[] nodesToBeDeleted = new Integer[] { 30, 63, 70 };
 		for (Integer e : nodesToBeDeleted) {
 			bst.deleteIteratively(e);
-			if (bst.searchIteratively(e) != null)
+			if (bst.searchNodeIteratively(e) != null)
 				fail(e + " should not be found");
 		}
 	}
@@ -104,7 +106,7 @@ public class BinarySearchTreeTests {
 //		Check that have been deleted
 		for (Integer e : nodesToBeDeleted) {
 			bst.deleteIteratively(e);
-			if (bst.searchIteratively(e) != null)
+			if (bst.searchNodeIteratively(e) != null)
 				fail(e + " should not be found");
 		}
 	}
@@ -116,7 +118,7 @@ public class BinarySearchTreeTests {
 //		Check that have been deleted
 		for (Integer e : nodesToBeDeleted) {
 			bst.deleteIteratively(e);
-			if (bst.searchIteratively(e) != null)
+			if (bst.searchNodeIteratively(e) != null)
 				fail(e + " should not be found");
 		}
 	}
@@ -167,7 +169,7 @@ public class BinarySearchTreeTests {
 		setupEmptyTree();
 		setupDeletion();
 		bst.deleteRecursively(50); // roots
-		assertTrue(bst.searchIteratively(50) == null);
+		assertTrue(bst.searchNodeIteratively(50) == null);
 		int expectedRoot = 46;
 		int actualRoot = bst.getRootData();
 		assertTrue("The root should be "  + expectedRoot + " not " + actualRoot, actualRoot == expectedRoot); // Check that the root is the in order successor, which is the maximum of
